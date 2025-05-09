@@ -3,6 +3,7 @@ import {
     getCorrelation
   } from '../services/stockService.js';
   
+  // This function fetches the stock history and calculates the average price
   export async function getAveragePrice(req, res) {
     try {
       const { ticker } = req.params;
@@ -16,6 +17,8 @@ import {
     }
   }
   
+  // This function fetches the stock correlation between two tickers
+
   export async function getStockCorrelation(req, res) {
     try {
       const { minutes, ticker } = req.query;
@@ -24,7 +27,6 @@ import {
       if (!ticker1 || !ticker2) {
         return res.status(400).json({ error: 'Provide two tickers' });
       }
-  
       const result = await getCorrelation(ticker1, ticker2, parseInt(minutes));
       res.json(result);
     } catch (error) {

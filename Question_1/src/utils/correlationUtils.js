@@ -1,3 +1,4 @@
+// Function to align two price histories based on timestamps
 export function alignPriceData(history1, history2) {
     const aligned = [];
     const timeMap = new Map();
@@ -28,6 +29,7 @@ export function alignPriceData(history1, history2) {
     return aligned;
   }
 
+  // Function to find the closest timestamp in a Map
   export function getClosestTimestamp(timeMap, timestamp) {
     let closestTime = null;
     let closestDiff = Infinity;
@@ -45,10 +47,12 @@ export function alignPriceData(history1, history2) {
     return closestTime;
   }
   
+  // Function to calculate mean
   export function calculateMean(prices) {
     return prices.reduce((sum, price) => sum + price, 0) / prices.length;
   }
   
+  // Function to calculate covariance
   export function calculateCovariance(prices1, prices2, mean1, mean2) {
     const sum = prices1.reduce((acc, price1, i) => {
       const price2 = prices2[i];
@@ -57,6 +61,7 @@ export function alignPriceData(history1, history2) {
     return sum / prices1.length;
   }
   
+  // Function to calculate standard deviation
   export function calculateStandardDeviation(prices, mean) {
     const sumSquaredDiff = prices.reduce((acc, price) => {
       return acc + Math.pow(price - mean, 2);
@@ -64,6 +69,7 @@ export function alignPriceData(history1, history2) {
     return Math.sqrt(sumSquaredDiff / prices.length);
   }
   
+  // Function to calculate correlation
   export function calculateCorrelation(stock1History, stock2History) {
     if (!Array.isArray(stock1History) || !Array.isArray(stock2History)) {
       throw new Error('Invalid price history data');

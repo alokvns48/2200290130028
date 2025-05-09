@@ -8,6 +8,7 @@ const headers = {
   Authorization: `Bearer ${process.env.BEARER_TOKEN}`
 };
 
+// Function to get stock history and calculate average price
 export async function getStockHistoryWithAverage(ticker, minutes) {
   const cacheKey = `${ticker}_${minutes}`;
   if (cache.has(cacheKey)) return cache.get(cacheKey);
@@ -22,6 +23,7 @@ export async function getStockHistoryWithAverage(ticker, minutes) {
   return result;
 }
 
+// Function to get stock correlation
 export async function getCorrelation(ticker1, ticker2, minutes) {
   const [history1, history2] = await Promise.all([
     getStockHistoryWithAverage(ticker1, minutes),

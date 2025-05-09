@@ -6,7 +6,9 @@ import {
 
 const router = express.Router();
 
+// Endpoint to get stock history and average price
 router.get('/stockcorrelation', getStockCorrelation); 
-router.get('/:ticker', getAveragePrice);
+// Endpoint to get stock correlation
+router.get('/stocks/:ticker', getAveragePrice);
 
 export default router;

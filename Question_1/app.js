@@ -1,9 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
 
-import stockRoutes from './src/routes/stockRoutes.js';
-
+import stockRoutes from "./src/routes/stockRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,16 +10,17 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/stocks', stockRoutes);
+app.use("/", stockRoutes);
 
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
-    error: 'Something went wrong!',
-    message: err.message
+    error: "Something went wrong!",
+    message: err.message,
   });
 });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-}); 
+});
